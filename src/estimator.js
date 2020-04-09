@@ -12,8 +12,9 @@ const impact = ({
   }
   const currentlyInfected = reportedCases * 10;
   const infectionsByRequestedTime = currentlyInfected * (2 ** factor);
-  const severeCasesByRequestedTime = infectionsByRequestedTime * 0.15;
-  const hospitalBedsByRequestedTime = (0.35 * totalHospitalBeds) - severeCasesByRequestedTime;
+  const severeCasesByRequestedTime = parseInt(infectionsByRequestedTime * 0.15, 10);
+  const hospitalBedsByRequestedTime = parseInt((0.35 * totalHospitalBeds)
+   - severeCasesByRequestedTime, 10);
   return {
     currentlyInfected,
     infectionsByRequestedTime,
@@ -35,8 +36,9 @@ const severeImpact = ({
   }
   const currentlyInfected = reportedCases * 50;
   const infectionsByRequestedTime = currentlyInfected * (2 ** factor);
-  const severeCasesByRequestedTime = infectionsByRequestedTime * 0.15;
-  const hospitalBedsByRequestedTime = (0.35 * totalHospitalBeds) - severeCasesByRequestedTime;
+  const severeCasesByRequestedTime = parseInt(infectionsByRequestedTime * 0.15, 10);
+  const hospitalBedsByRequestedTime = parseInt((0.35 * totalHospitalBeds)
+   - severeCasesByRequestedTime, 10);
   return {
     currentlyInfected,
     infectionsByRequestedTime,
