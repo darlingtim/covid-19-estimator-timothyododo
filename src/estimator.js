@@ -24,8 +24,9 @@ const impact = ({
    - severeCasesByRequestedTime, 10);
   const casesForICUByRequestedTime = parseInt(infectionsByRequestedTime * 0.05, 10);
   const casesForVentilatorsByRequestedTime = parseInt(infectionsByRequestedTime * 0.02, 10);
-  const dollarsInFlight = infectionsByRequestedTime * avgDailyIncomePopulation * avgDailyIncomeInUSD
-   * durationInDays;
+  const dollarsInFlight = (infectionsByRequestedTime * avgDailyIncomePopulation
+     * avgDailyIncomeInUSD)
+   / durationInDays;
   return {
     currentlyInfected,
     infectionsByRequestedTime,
@@ -62,8 +63,9 @@ const severeImpact = ({
    - severeCasesByRequestedTime, 10);
   const casesForICUByRequestedTime = parseInt(infectionsByRequestedTime * 0.05, 10);
   const casesForVentilatorsByRequestedTime = parseInt(infectionsByRequestedTime * 0.02, 10);
-  const dollarsInFlight = infectionsByRequestedTime * avgDailyIncomePopulation * avgDailyIncomeInUSD
-   * durationInDays;
+  const dollarsInFlight = (infectionsByRequestedTime * avgDailyIncomePopulation
+    * avgDailyIncomeInUSD)
+   / durationInDays;
   return {
     currentlyInfected,
     infectionsByRequestedTime,
