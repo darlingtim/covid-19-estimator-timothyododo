@@ -1,7 +1,9 @@
 
 const impact = ({
-  reportedCases, periodType, timeToElapse, totalHospitalBeds, avgDailyIncomePopulation,
-  avgDailyIncomeInUSD
+  reportedCases, periodType, timeToElapse, totalHospitalBeds, region: {
+    avgDailyIncomePopulation,
+    avgDailyIncomeInUSD
+  }
 }) => {
   let factor;
   let durationInDays;
@@ -36,8 +38,10 @@ const impact = ({
 };
 
 const severeImpact = ({
-  reportedCases, periodType, timeToElapse, totalHospitalBeds, avgDailyIncomePopulation,
-  avgDailyIncomeInUSD
+  reportedCases, periodType, timeToElapse, totalHospitalBeds, region: {
+    avgDailyIncomePopulation,
+    avgDailyIncomeInUSD
+  }
 }) => {
   let factor;
   let durationInDays;
