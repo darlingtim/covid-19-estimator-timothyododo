@@ -16,6 +16,16 @@ const port = process.env.NODE_ENV === 'production' ? process.env.PORT : 3000;
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
+const keepLog = {};
+const startLog = (req, res, next) => {
+  keepLog.stime = Date.now();
+  keepLog.kpath = req.path;
+  keepLog.kmethod = req.method;
+  req.keepLog = keepLog;
+  next();
+};
+app.use(startLog);
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -42,6 +52,7 @@ app.use((err, req, res, next) => {
   res.status(err.status || 500);
   res.render('error');
 });
+
 
 // start server
 app.listen(port, () => {
