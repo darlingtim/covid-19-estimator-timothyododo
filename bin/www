@@ -4,10 +4,11 @@
  * Module dependencies.
  */
 
-import { createServer } from 'http';
-import app, { set } from '../app';
-
+const createServer = require('http');
 const debug = require('debug')('covid-19-estimator-timothyododo:server');
+
+const app = require('../app');
+
 
 /**
  * Normalize a port into a number, string, or false.
@@ -35,7 +36,7 @@ function normalizePort(val) {
  */
 
 const port = normalizePort(process.env.PORT || '3000');
-set('port', port);
+app.set('port', port);
 
 /**
  * Create HTTP server.
