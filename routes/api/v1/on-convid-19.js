@@ -52,7 +52,7 @@ router.post('/xml', (req, res, next) => {
   res.set('Content-Type', 'application/xml; charset=UTF-8').send(builder.buildObject(result));
   next();
 });
-router.get('/log', (req, res) => {
+router.get('/logs', (req, res) => {
   keepMyLog(req, 200);
   fs.exists('logs.txt', () => fs.readFile('logs.txt', (err, result) => res.send(result)));
 });
