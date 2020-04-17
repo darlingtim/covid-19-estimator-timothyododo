@@ -16,7 +16,7 @@ const keepMyLog = (req, responseStatusCode) => {
     kmethod, kpath, kcode, stime, ktime
   } = keepLog;
   fs.appendFile(
-    `${__dirname}/logs.txt`,
+    'logs.txt',
     `${kmethod}\t\t${kpath}\t\t${kcode}\t\t10${ktime - stime}ms\n`,
     (err) => {
       if (err) throw err;
@@ -25,6 +25,7 @@ const keepMyLog = (req, responseStatusCode) => {
 };
 
 router.get('/', (req, res, next) => {
+  keepMyLog(req, 200);
   res.send('welcome to SDG');
   next();
 });
@@ -51,16 +52,10 @@ router.post('/xml', (req, res, next) => {
   res.set('Content-Type', 'application/xml; charset=UTF-8').send(builder.buildObject(result));
   next();
 });
-router.get('/log', (req, res, next) => {
+router.get('/log', (req, res) => {
   keepMyLog(req, 200);
-
-  fs.readFile(`${__dirname}/logs.txt`, 'utf8', (err, data) => {
-    if (err) throw err;
-    keepMyLog(req, 200);
-    // res.set('text/plain');
-    res.send(data);
-  });
-  next();
+  fs.exists('logs.txt', () => fs.readFile('logs.txt', (err, result) => res.send(result)));
 });
+
 
 module.exports = router;
